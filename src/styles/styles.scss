@@ -1,0 +1,131 @@
+$text-color: beige;
+$background-color: #FFAA00;
+
+*, :after, :before {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+* {
+    max-height: 1000000px;
+}
+
+body {
+    color: $text-color;
+    background: $background-color;
+    font: 18px/1.6 "Lucida Console", Monaco, monospace;
+}
+
+.todo-box {
+    margin: 30px auto;
+    width: 600px;
+    background: #008500;
+    transition: box-shadow .6s cubic-bezier(.694,0,.335,1);
+    &.active {
+        box-shadow: 5px 5px 35px rgba(0,0,0,0.5);
+        .todo-box__content__settings {
+            display: block;
+        }
+    }
+    &__heading {
+        text-align: center;
+        padding: 15px;
+        background: #A64B00;
+        font: 26px/1.6 "Arial Black", Gadget, sans-serif;
+        h1 {
+            margin: 0;
+        }
+    }
+    &__content {
+        .add-option {
+            input[type="text"] {
+                display: block;
+                width: calc(100% - 30px);;
+                margin: 0;
+                padding: 0 15px;
+                border: none;
+                background: white;
+                height: 60px;
+                text-align: center;
+                font: 14px/60 "Lucida Console", Monaco, monospace;
+                color: black;
+            }
+        }
+        &__option {
+            border-bottom: 1px solid #06266F;
+            padding: 5px 40px 5px 15px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 50px;
+            background: #4C59D8;
+            &:hover {
+                button {
+                    opacity: 1;
+                }
+            }
+            button {
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 40px;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                border: none;
+                cursor: pointer;
+                font-size: 26px;
+                font-weight: normal;
+                background: transparent;
+                line-height: 1;
+                color: #FF7373;
+                opacity: 0;
+                transition: opacity .3s cubic-bezier(.694,0,.335,1);
+                text-shadow: 1px 1px 2px black, 0 0 1em red;
+                &:after {
+                    content: '×';
+                }
+            }
+        }
+        &__settings {
+            padding: 25px 15px;
+            overflow: hidden;
+            display: none;
+            button {
+                border-radius: 5px;
+                padding: 5px 25px;
+                font-size: 14px;
+                text-decoration: none;
+                margin: 0;
+                color: #fff;
+                margin: 0;
+                border: none;
+                cursor: pointer;
+            }
+            .btn-question {
+                background-color: #f1c40f;
+                box-shadow: 0px 5px 0px 0px #D8AB00;
+                &:disabled {
+                    opacity: .3;
+                    cursor: default;
+                }
+            }
+            .btn-remove {
+                background-color: #e74c3c;
+                box-shadow: 0px 5px 0px 0px #CE3323;
+                float: right;
+            }
+        }
+    }
+    .error-message {
+        background: #FF7400;
+        padding: 15px 10px;
+        font-size: 12px;
+        line-height: 1.6;
+        color: white;
+    }
+}
+.ReactModalPortal {
+    color: black;
+}

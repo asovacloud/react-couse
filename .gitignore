@@ -9,3 +9,4 @@ Thumbs.db
 .babelrc
 public/
 yarn.lock
+node_modules

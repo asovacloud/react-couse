@@ -1,18 +1,14 @@
 import React from 'react';
 
-const Option = (props) => {
-    return (
-        <div>
-            {props.optionText}
-            <button
-                onClick={(e) => {
-                    props.handleDeleteOption(props.optionText);
-                }}
-            >
-                remove
-            </button>
-        </div>
-    );
-}
+const Option = (props) => (
+  <div className="todo-box__content__option">
+    {props.optionText}
+    <button
+      onClick={(e) => {
+        props.handleDeleteOption(props.optionText);
+      }}
+    ></button>
+  </div>
+);
 
 export default Option;
