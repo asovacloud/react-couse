@@ -14,55 +14,63 @@
     <script>
 
         const inputComponent = (props) => {
-          return React.createElement('div', {
+
+            const wrapAttr = {
                 className: 'row',
                 style: {
                     'margin-bottom': 10,
                     'display': 'flex'
                 }
-              },
-              React.createElement('input', {
-                  type: props.type,
-                  placeholder: props.placeholder,
-                  fontSize: 18,
-                  style: {
-                      'line-height': 30,
-                      'height': 30,
-                      'padding-left': 15,
-                      'padding-right': 15,
-                      'display': 'block',
-                      'width': '100%'
-                  }
-              } )
-          );
-        };
+            };
 
-        const buttonComponent = (props) => {
-            return React.createElement('div', { className: 'row-btn' },
-                React.createElement('button', {
-                    fontSize: props.fontSize,
-                    style: {
-                        'width': 160,
-                        'height': 40,
-                        'margin': '0 auto',
-                        'cursor': 'pointer'
-                    }
-                }, 'Login')
+            const inputAttr = {
+                type: props.type,
+                placeholder: props.placeholder,
+                fontSize: 18,
+                style: {
+                    'line-height': 30,
+                    'height': 30,
+                    'padding-left': 15,
+                    'padding-right': 15,
+                    'display': 'block',
+                    'width': '100%'
+                }
+            };
+
+            return React.createElement('div', wrapAttr,
+              React.createElement('input', inputAttr )
             );
         };
 
-        const formAttr = {
-            type: 'POST',
-            action: '#',
-            style: {
-                'margin': '0 auto',
-                'width': 300,
-                'padding': 80,
-                'text-align': 'center'
-            }
+        const buttonComponent = (props) => {
+            const buttonAttr = {
+                fontSize: props.fontSize,
+                style: {
+                    'width': 160,
+                    'height': 40,
+                    'margin': '0 auto',
+                    'cursor': 'pointer'
+                }
+            };
+
+            return React.createElement('div', { className: 'row-btn' },
+                React.createElement('button', buttonAttr, 'Login')
+            );
         };
 
         const formComponent = () => {
+
+            const formAttr = {
+                type: 'POST',
+                action: '#',
+                style: {
+                    'margin': '0 auto',
+                    'width': 300,
+                    'padding': 80,
+                    'text-align': 'center'
+                }
+            };
+
             return React.createElement('form', formAttr,
                 React.createElement(inputComponent, {type: 'text', placeholder: 'Enter The Name...'}),
                 React.createElement(inputComponent, {type: 'password', placeholder: 'Enter The Password...'}),
