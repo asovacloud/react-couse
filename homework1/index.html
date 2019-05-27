@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="node_modules/react/umd/react.development.js"></script>
+    <script src="node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script>
+
+        const inputComponent = (props) => {
+          return React.createElement('div', {
+                className: 'row',
+                style: {
+                    'margin-bottom': 10,
+                    'display': 'flex'
+                }
+              },
+              React.createElement('input', {
+                  type: props.type,
+                  placeholder: props.placeholder,
+                  fontSize: 18,
+                  style: {
+                      'line-height': 30,
+                      'height': 30,
+                      'padding-left': 15,
+                      'padding-right': 15,
+                      'display': 'block',
+                      'width': '100%'
+                  }
+              } )
+          );
+        };
+
+        const buttonComponent = (props) => {
+            return React.createElement('div', { className: 'row-btn' },
+                React.createElement('button', {
+                    fontSize: props.fontSize,
+                    style: {
+                        'width': 160,
+                        'height': 40,
+                        'margin': '0 auto',
+                        'cursor': 'pointer'
+                    }
+                }, 'Login')
+            );
+        };
+
+        const formAttr = {
+            type: 'POST',
+            action: '#',
+            style: {
+                'margin': '0 auto',
+                'width': 300,
+                'padding': 80,
+                'text-align': 'center'
+            }
+        };
+
+        const formComponent = () => {
+            return React.createElement('form', formAttr,
+                React.createElement(inputComponent, {type: 'text', placeholder: 'Enter The Name...'}),
+                React.createElement(inputComponent, {type: 'password', placeholder: 'Enter The Password...'}),
+                React.createElement(buttonComponent, { fontSize: 18 })
+            );
+        };
+
+        ReactDOM.render(
+            React.createElement( formComponent ),
+            document.getElementById( 'app' ),
+        );
+    </script>
+</body>
+</html>
