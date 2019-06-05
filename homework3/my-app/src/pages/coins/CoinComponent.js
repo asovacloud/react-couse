@@ -1,14 +1,18 @@
 import React from 'react';
 
+// import { Link } from "react-router-dom";
+
+import { CRYPTO_COMPARE_URL } from './constants';
+
 function Coins( props ) {
     return (
         <>
             <li>
-                <a href={ "https://www.cryptocompare.com"+ props.Url } target='_blank'>
+                <a href={ CRYPTO_COMPARE_URL + '/' + props.Url } target='_blank' rel="noopener noreferrer">
                     <div className='coins-list__image'>
-                        <img src={ "https://www.cryptocompare.com/"+ props.ImageUrl } width='300' height='300' alt={ props.CoinName } />
-                    </div>
-                    <div className="coins-list__title">
+                        <img src={ CRYPTO_COMPARE_URL + props.ImageUrl } width='300' height='300' alt={ props.CoinName } />
+                        </div>
+                        <div className="coins-list__title">
                         <h3>{ props.FullName }</h3>
                     </div>
                 </a>

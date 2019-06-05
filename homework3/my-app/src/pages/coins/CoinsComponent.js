@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Coins.css';
+import './CoinsComponent.css';
 
 import Header from './HeaderComponent';
 import Search from './SearchComponent';
@@ -19,18 +19,19 @@ function Coins() {
             <ul className='coins-list'>
                 {
                     Object.entries(coinsData.Data).map( (coin, i) => {
-                        if (i < 10) {
+                        if (i < 12) {
                             const coinVariable = coin[1];
-                            console.log( coinVariable );
                             return <Coin
+                                key={ coinVariable['Id'] }
                                 id={ coinVariable['Id']  }
-                                key={ i }
                                 ImageUrl= { coinVariable['ImageUrl'] }
                                 CoinName={ coinVariable['CoinName'] }
                                 FullName={ coinVariable['FullName'] }
                                 Url={ coinVariable['Url'] }
                             />
                         }
+
+                        return null;
                     } )
                 }
             </ul>

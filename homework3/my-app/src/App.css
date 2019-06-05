@@ -58,3 +58,18 @@
   -webkit-box-sizing: inherit;
   box-sizing: inherit;
 }
+
+body {
+  font: 16px/1.6 'Arial', 'Helvetica', sans-serif;
+  color: #262e4f;
+}
+
+a {
+  transition: color .3s ease-in, background .3s ease-in;
+  text-decoration: none;
+  color: #262e4f;
+}
+
+a:hover {
+  color: tomato;
+}
