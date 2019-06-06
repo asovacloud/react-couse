@@ -1,8 +1,8 @@
 import React from 'react';
 
-// import { Link } from "react-router-dom";
-
 import { CRYPTO_COMPARE_URL } from './constants';
+
+import PropTypes from 'prop-types';
 
 function Coins( props ) {
     return (
@@ -20,5 +20,11 @@ function Coins( props ) {
         </>
     );
 }
+
+Coins.propTypes = {
+    'Url': PropTypes.string.isRequired,
+    'CoinName': PropTypes.string.isRequired,
+    'FullName': PropTypes.string.isRequired
+};
 
 export default Coins;

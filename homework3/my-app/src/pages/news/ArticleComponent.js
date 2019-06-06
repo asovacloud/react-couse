@@ -1,6 +1,7 @@
 import React from 'react';
-import {CRYPTO_COMPARE_URL} from "../coins/constants";
 
+
+//import {CRYPTO_COMPARE_URL} from "../coins/constants";
 // import { CRYPTO_COMPARE_URL } from './constants';
 
 function Article( props ) {
