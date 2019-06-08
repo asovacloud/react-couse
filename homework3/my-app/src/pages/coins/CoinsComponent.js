@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import './CoinsComponent.css';
 
@@ -8,18 +8,25 @@ import Coin from './CoinComponent';
 
 import coinsData from './coinsList.json';
 
-function Coins() {
-    return (
-        <div className='main'>
+class Coins extends Component {
 
-            <Header />
+    state = {
+        coinsList: Object.keys(coinsData.Data).slice(0, 10).map(key => coinsData.Data[key])
+    };
 
-            <Search />
+    render() {
+        const { search } = this.state;
 
-            <ul className='coins-list'>
-                {
-                    Object.entries(coinsData.Data).map( (coin, i) => {
-                        if (i < 12) {
+        return (
+            <div className='main'>
+
+                <Header />
+
+                <Search />
+
+                <ul className='coins-list'>
+                    {
+                        Object.entries(this.state.coinsList).map( (coin) => {
                             const coinVariable = coin[1];
                             return <Coin
                                 key={ coinVariable['Id'] }
@@ -29,14 +36,12 @@ function Coins() {
                                 FullName={ coinVariable['FullName'] }
                                 Url={ coinVariable['Url'] }
                             />
-                        }
-
-                        return null;
-                    } )
-                }
-            </ul>
-        </div>
-    );
+                        } )
+                    }
+                </ul>
+            </div>
+        );
+    }
 }
 
 export default Coins;
