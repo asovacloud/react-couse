@@ -9,35 +9,51 @@ import Coin from './CoinComponent';
 import coinsData from './coinsList.json';
 
 class Coins extends Component {
-
     state = {
-        coinsList: Object.keys(coinsData.Data).slice(0, 10).map(key => coinsData.Data[key])
+        coinsList: Object.keys(coinsData.Data)
+            .slice(0, 12)
+            .map(key => {
+                return coinsData.Data[key];
+            }),
+        search: '',
+    };
+
+    handleSearch = event => {
+        this.setState({ search: event.target.value });
+    };
+
+    filterCoinsList = () => {
+        const { coinsList, search } = this.state;
+        return coinsList.filter(coin =>
+            coin.CoinName.toLowerCase().includes(search.toLowerCase()),
+        );
     };
 
     render() {
-        const { search } = this.state;
+        // const { search } = this.state;
 
         return (
-            <div className='main'>
-
+            <div className="main">
                 <Header />
 
-                <Search />
+                <Search
+                    handler={this.handleSearch}
+                    search={this.state.search}
+                />
 
-                <ul className='coins-list'>
-                    {
-                        Object.entries(this.state.coinsList).map( (coin) => {
-                            const coinVariable = coin[1];
-                            return <Coin
-                                key={ coinVariable['Id'] }
-                                id={ coinVariable['Id']  }
-                                ImageUrl= { coinVariable['ImageUrl'] }
-                                CoinName={ coinVariable['CoinName'] }
-                                FullName={ coinVariable['FullName'] }
-                                Url={ coinVariable['Url'] }
+                <ul className="coins-list">
+                    {this.filterCoinsList().map(coin => {
+                        return (
+                            <Coin
+                                key={coin['Id']}
+                                id={coin['Id']}
+                                ImageUrl={coin['ImageUrl']}
+                                CoinName={coin['CoinName']}
+                                FullName={coin['FullName']}
+                                Url={coin['Url']}
                             />
-                        } )
-                    }
+                        );
+                    })}
                 </ul>
             </div>
         );

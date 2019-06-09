@@ -2,16 +2,22 @@ import React from 'react';
 
 import './SearchComponent.css';
 
-function Search() {
+const Search = function(props) {
     return (
-        <form action="#" className='search-coins form'>
+        <form action="#" className="search-coins form">
             <label htmlFor="text-coin">Search</label>
             <div className="input-row">
-                <input type="text" placeholder='Search coins' id="text-coin" />
+                <input
+                    type="text"
+                    placeholder="Search coins"
+                    id="text-coin"
+                    value={props.search}
+                    onChange={props.handler}
+                />
             </div>
-            <button className='submit'>Search</button>
+            <button className="submit">Search</button>
         </form>
     );
-}
+};
 
 export default Search;
