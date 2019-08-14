@@ -9,7 +9,7 @@ const Search = function(props) {
             <div className="input-row">
                 <input
                     type="text"
-                    placeholder="Search news"
+                    placeholder="Search coins"
                     id="text-coin"
                     value={props.search}
                     onChange={props.handler}
