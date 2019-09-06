@@ -37,13 +37,13 @@ const Cockpit = props => {
 
   const classes = [];
 
-  if (props.persons.length <= 2) {
+  if (props.personsLength <= 2) {
     classes.push("tomato");
   }
-  if (props.persons.length <= 1) {
+  if (props.personsLength <= 1) {
     classes.push("bold");
   }
-  if (props.persons.length === 0) {
+  if (props.personsLength === 0) {
     classes.push("shadow");
   }
 
@@ -58,4 +58,4 @@ const Cockpit = props => {
   );
 };
 
-export default Cockpit;
+export default React.memo(Cockpit);

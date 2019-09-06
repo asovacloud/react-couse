@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import "./App.css";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     super(props);
     console.log("[App.js] constructor");
@@ -29,10 +29,10 @@ class App extends Component {
     console.log("[App.js] componentDidMount");
   }
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
+  /*shouldComponentUpdate(nextProps, nextState, nextContext) {
     console.log("[App.js] shouldComponentUpdate");
     return true;
-  }
+  }*/
 
   componentDidUpdate() {
     console.log("[App.js] componentDidUpdate");
@@ -94,7 +94,7 @@ class App extends Component {
           <Cockpit
             title={this.props.appTitle}
             showPersons={this.state.showPersons}
-            persons={this.state.persons}
+            personsLength={this.state.persons.length}
             clicked={this.togglePersonHandler}
           />
         ) : null}
