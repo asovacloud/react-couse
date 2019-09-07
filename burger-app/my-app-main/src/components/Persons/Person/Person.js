@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import "./Person.css";
+//import Aux from '../../../HOC/Aux'
+import classes from "./Person.css";
 
 class Person extends Component {
   render() {
     console.log("[Person.js] rendering...");
     return (
-      <div className="Person">
-        <div className="btn-delete" onClick={this.props.click}>
+      <div className={classes.Person}>
+        <div className={classes.btnDelete} onClick={this.props.click}>
           <img
             src="https://img.icons8.com/material/24/000000/delete-forever--v1.png"
             alt="description"

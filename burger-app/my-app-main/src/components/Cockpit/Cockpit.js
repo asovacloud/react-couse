@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./Cockpit.css";
+import classes from "./Cockpit.css";
 
 const Cockpit = props => {
   useEffect(() => {
@@ -35,22 +35,22 @@ const Cockpit = props => {
     btnStyle.color = "white";
   }
 
-  const classes = [];
+  const classesDescription = [];
 
   if (props.personsLength <= 2) {
-    classes.push("tomato");
+    classesDescription.push(classes.tomato);
   }
   if (props.personsLength <= 1) {
-    classes.push("bold");
+    classesDescription.push(classes.bold);
   }
   if (props.personsLength === 0) {
-    classes.push("shadow");
+    classesDescription.push(classes.shadow);
   }
 
   return (
-    <div>
+    <div className={classes.Cockpit}>
       <h1>{props.title}</h1>
-      <p className={classes.join(" ")}>Just do it.</p>
+      <p className={classesDescription.join(" ")}>Just do it.</p>
       <button style={btnStyle} onClick={props.clicked}>
         {props.showPersons ? "Hide Persons" : "Show Persons"}
       </button>

@@ -1,7 +1,8 @@
 import React, { PureComponent } from "react";
-import "./App.css";
+import classes from "./App.css";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
+import WithClass from "../hoc/WithClass";
 
 class App extends PureComponent {
   constructor(props) {
@@ -30,7 +31,7 @@ class App extends PureComponent {
   }
 
   /*shouldComponentUpdate(nextProps, nextState, nextContext) {
-    console.log("[App.js] shouldComponentUpdate");
+    console.log('[App.js] shouldComponentUpdate');
     return true;
   }*/
 
@@ -82,7 +83,7 @@ class App extends PureComponent {
     }
 
     return (
-      <div className="App">
+      <WithClass classes={classes.App}>
         <button
           onClick={() => {
             this.setState({ showCockpit: false });
@@ -99,7 +100,7 @@ class App extends PureComponent {
           />
         ) : null}
         {persons}
-      </div>
+      </WithClass>
     );
   }
 }
