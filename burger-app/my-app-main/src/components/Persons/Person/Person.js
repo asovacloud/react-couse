@@ -1,30 +1,49 @@
 import React, { Component } from "react";
-//import Aux from '../../../HOC/Aux'
+import PropTypes from "prop-types";
+import withClass from "../../../hoc/withClass";
+import Aux from "../../../hoc/Aux";
 import classes from "./Person.css";
 
 class Person extends Component {
+  constructor(props) {
+    super(props);
+    this.inputElementRef = React.createRef();
+  }
+  componentDidMount() {
+    // this.inputElement.focus();
+    this.inputElementRef.current.focus();
+  }
   render() {
-    console.log("[Person.js] rendering...");
     return (
-      <div className={classes.Person}>
-        <div className={classes.btnDelete} onClick={this.props.click}>
+      <Aux>
+        <div className={classes.btnDelete} onClick={this.props.click} key="i1">
           <img
             src="https://img.icons8.com/material/24/000000/delete-forever--v1.png"
             alt="description"
           />
         </div>
-        <p>
+        <p key="i2">
           This is a {this.props.name} and I'm an {this.props.age} years old!
         </p>
-        <p>{this.props.children}</p>
+        <p key="i3">{this.props.children}</p>
         <input
           type="text"
           onChange={this.props.changed}
           value={this.props.name}
+          key="i4"
+          //ref={ (inputEl) => { this.inputElement = inputEl } }
+          ref={this.inputElementRef}
         />
-      </div>
+      </Aux>
     );
   }
 }
 
-export default Person;
+Person.propTypes = {
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  changed: PropTypes.func
+};
+
+export default withClass(Person, classes.Person);
