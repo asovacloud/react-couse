@@ -1,19 +1,31 @@
-import React from "react";
+import React, { Component } from "react";
 
-const ItemStatusFilter = () => {
-  return (
-    <div className="btn-group" role="group" aria-label="First group">
-      <button type="button" className="btn btn-info">
-        All
-      </button>
-      <button type="button" className="btn btn-outline-info">
-        Active
-      </button>
-      <button type="button" className="btn btn-outline-info">
-        Done
-      </button>
-    </div>
-  );
-};
-
-export default ItemStatusFilter;
+export default class ItemStatusFilter extends Component {
+  render() {
+    return (
+      <div className="btn-group" role="group" aria-label="First group">
+        <button
+          type="button"
+          className="btn btn-info"
+          onClick={() => console.log("All")}
+        >
+          All
+        </button>
+        <button
+          type="button"
+          className="btn btn-outline-info"
+          onClick={() => console.log("Active")}
+        >
+          Active
+        </button>
+        <button
+          type="button"
+          className="btn btn-outline-info"
+          onClick={() => console.log("Done")}
+        >
+          Done
+        </button>
+      </div>
+    );
+  }
+}

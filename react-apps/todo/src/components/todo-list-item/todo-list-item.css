@@ -4,7 +4,9 @@
 }
 
 .list-group.todo-list .todo-list-item-label {
-  margin-right: auto;
+  width: 100%;
+  padding: 5px 0 5px 0.75rem;
+  cursor: pointer;
 }
 
 .list-group.todo-list .btn {
@@ -17,11 +19,11 @@
   margin-left: 5px;
 }
 
-.todo-list.done .todo-list-item-label {
+.todo-list-item.done .todo-list-item-label {
   text-decoration: line-through;
 }
 
-.todo-list.important .todo-list-item-label {
+.todo-list-item.important .todo-list-item-label {
   font-weight: bold;
   color: steelblue;
 }
