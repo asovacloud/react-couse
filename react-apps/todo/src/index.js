@@ -1,33 +1,42 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const AppHeader = props => {
-  return <h1>{props.title}</h1>;
-};
+import AppHeader from "./components/app-header/app-header";
+import FilterPanel from "./components/filter-panel/filter-panel";
+import TodoList from "./components/todo-list/todo-list";
 
-const SearchPanel = props => {
-  return <input type="text" placeholder={props.placeholder} />;
-};
+const App = () => {
+  const todoData = [
+    {
+      id: "1",
+      label: "Drink Coffee 000",
+      important: false
+    },
+    {
+      id: "2",
+      label: "Make Awesome App",
+      important: true
+    },
+    {
+      id: "3",
+      label: "Have a lunch",
+      important: false
+    }
+  ];
 
-const TodoListItem = props => {
-  return <li>{props.content}</li>;
-};
+  const styleWrap = {
+    padding: "20px 10px",
+    maxWidth: "600px",
+    margin: "0 auto"
+  };
 
-const TodoList = () => {
   return (
-    <ul>
-      <TodoListItem content="Lear React" />
-      <TodoListItem content="Build Awesome App" />
-    </ul>
+    <div style={styleWrap}>
+      <AppHeader title="My Todo List" toDo={1} done={3} />
+      <FilterPanel />
+      <TodoList todos={todoData} />
+    </div>
   );
 };
 
-const el = (
-  <div>
-    <AppHeader title="My Todo list" />
-    <SearchPanel placeholder="Search..." />
-    <TodoList />
-  </div>
-);
-
-ReactDOM.render(el, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));

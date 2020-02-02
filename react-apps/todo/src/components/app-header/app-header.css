@@ -1,0 +1,10 @@
+.app-header {
+  margin: 0 0 0.7rem;
+}
+
+.app-header h2 {
+  font-size: 1rem;
+  margin: auto 0 0.8rem auto;
+  font-weight: normal;
+  color: #808080;
+}

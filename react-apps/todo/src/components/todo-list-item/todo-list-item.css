@@ -1,0 +1,27 @@
+.list-group.todo-list .todo-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.list-group.todo-list .todo-list-item-label {
+  margin-right: auto;
+}
+
+.list-group.todo-list .btn {
+  padding-left: 0;
+  padding-right: 0;
+  width: 31px;
+}
+
+.list-group.todo-list .btn + .btn {
+  margin-left: 5px;
+}
+
+.todo-list.done .todo-list-item-label {
+  text-decoration: line-through;
+}
+
+.todo-list.important .todo-list-item-label {
+  font-weight: bold;
+  color: steelblue;
+}
