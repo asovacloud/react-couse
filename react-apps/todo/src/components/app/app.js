@@ -25,11 +25,15 @@ const App = () => {
     }
   ];
 
+  const onDelete = id => {
+    console.log("del: ", id);
+  };
+
   return (
     <div className="app">
       <AppHeader title="My Todo List" toDo={1} done={3} />
       <FilterPanel />
-      <TodoList todos={todoData} />
+      <TodoList todos={todoData} onDeleted={onDelete} />
     </div>
   );
 };
