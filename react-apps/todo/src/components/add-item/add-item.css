@@ -1,0 +1,13 @@
+.add-item {
+  margin: 0.75rem 0 0;
+  display: flex;
+}
+
+.add-item .row-input {
+  width: 100%;
+  padding: 0 0.25rem 0 0;
+}
+
+.add-item .btn {
+  width: 70px;
+}
