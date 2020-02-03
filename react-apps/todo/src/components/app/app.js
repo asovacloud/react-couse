@@ -81,8 +81,20 @@ export default class App extends Component {
     });
   };
 
+  search(items, term) {
+    if (term.length === "") {
+      return items;
+    } else {
+      term = term.toLowerCase();
+    }
+
+    return items.filter(item => item.label.toLowerCase().indexOf(term) > -1);
+  }
+
   render() {
     const { todoData, searchValue } = this.state;
+
+    const visibleItems = this.search(todoData, searchValue);
 
     const doneCount = todoData.filter(el => el.done === true).length;
     const todoCount = todoData.length - doneCount;
@@ -92,7 +104,7 @@ export default class App extends Component {
         <AppHeader title="My Todo List" toDo={todoCount} done={doneCount} />
         <FilterPanel onSearch={this.searchItems} searchValue={searchValue} />
         <TodoList
-          todos={todoData}
+          todos={visibleItems}
           onDeleted={this.deleteItem}
           onImportant={this.onToggleImportant}
           onDone={this.onToggleDone}
