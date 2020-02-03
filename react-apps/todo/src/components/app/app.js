@@ -13,7 +13,8 @@ export default class App extends Component {
       this.createTodoItem("Drink Coffee"),
       this.createTodoItem("Make Awesome App"),
       this.createTodoItem("Have a lunch")
-    ]
+    ],
+    searchValue: ""
   };
 
   createTodoItem(label) {
@@ -26,6 +27,12 @@ export default class App extends Component {
       done: false
     };
   }
+
+  searchItems = e => {
+    this.setState({
+      searchValue: e
+    });
+  };
 
   deleteItem = id => {
     this.setState(({ todoData }) => {
@@ -75,7 +82,7 @@ export default class App extends Component {
   };
 
   render() {
-    const { todoData } = this.state;
+    const { todoData, searchValue } = this.state;
 
     const doneCount = todoData.filter(el => el.done === true).length;
     const todoCount = todoData.length - doneCount;
@@ -83,7 +90,7 @@ export default class App extends Component {
     return (
       <div className="app">
         <AppHeader title="My Todo List" toDo={todoCount} done={doneCount} />
-        <FilterPanel />
+        <FilterPanel onSearch={this.searchItems} searchValue={searchValue} />
         <TodoList
           todos={todoData}
           onDeleted={this.deleteItem}
