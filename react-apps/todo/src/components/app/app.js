@@ -14,7 +14,8 @@ export default class App extends Component {
       this.createTodoItem("Make Awesome App"),
       this.createTodoItem("Have a lunch")
     ],
-    searchValue: ""
+    searchValue: "",
+    filter: "active" //active, all, done
   };
 
   createTodoItem(label) {
@@ -32,6 +33,10 @@ export default class App extends Component {
     this.setState({
       searchValue: e
     });
+  };
+
+  onFilterChange = filter => {
+    this.setState({ filter });
   };
 
   deleteItem = id => {
@@ -91,10 +96,26 @@ export default class App extends Component {
     return items.filter(item => item.label.toLowerCase().indexOf(term) > -1);
   }
 
-  render() {
-    const { todoData, searchValue } = this.state;
+  filter(items, filter) {
+    switch (filter) {
+      case "all":
+        return items;
+      case "active":
+        return items.filter(item => !item.done);
+      case "done":
+        return items.filter(item => item.done);
+      default:
+        return items;
+    }
+  }
 
-    const visibleItems = this.search(todoData, searchValue);
+  render() {
+    const { todoData, searchValue, filter } = this.state;
+
+    const visibleItems = this.filter(
+      this.search(todoData, searchValue),
+      filter
+    );
 
     const doneCount = todoData.filter(el => el.done === true).length;
     const todoCount = todoData.length - doneCount;
@@ -102,7 +123,12 @@ export default class App extends Component {
     return (
       <div className="app">
         <AppHeader title="My Todo List" toDo={todoCount} done={doneCount} />
-        <FilterPanel onSearch={this.searchItems} searchValue={searchValue} />
+        <FilterPanel
+          onSearch={this.searchItems}
+          searchValue={searchValue}
+          filter={filter}
+          onFilterChange={this.onFilterChange}
+        />
         <TodoList
           todos={visibleItems}
           onDeleted={this.deleteItem}
