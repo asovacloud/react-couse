@@ -1,37 +1,49 @@
-/*
-import React from 'react';
 
-const App = () => {
+class SwapiService {
 
-};
-*/
+    _apiBase = 'https://swapi.co/api';
 
-const getResource = async (url) => {
-  const res = await fetch(url);
+    async getResource(url) {
+        const res = await fetch(`${this._apiBase}${url}`);
 
-  if (!res.ok) {
-      throw new Error(`Could not fetch ${url} receiverd ${res.status}`)
-  }
+        if (!res.ok) {
+            throw new Error(`Could not fetch ${url} receiverd ${res.status}`)
+        }
 
-  const body = await res.json();
+        return await res.json();
+    }
 
-  return body
-};
+    async getAllPeople() {
+        const res = await this.getResource(`/people/`);
+        return res.results;
+    }
 
-getResource('https://swapi.co/api/people/1asdfsdfsdf/')
-.then((body) => {
-    console.log(body);
-})
-.catch((err) => {
-    console.error('Could not fetch.', err)
+    getPerson(id) {
+        return this.getResource(`/people/${id}`);
+    }
+
+    async getAllPlanets() {
+        const res = await this.getResource(`/planets/`);
+        return res.results;
+    }
+
+    getPlanet(id) {
+        return this.getResource(`/planets/${id}`);
+    }
+
+    async getAllStarships() {
+        const res = await this.getResource(`/starships/`);
+        return res.results;
+    }
+
+    getStarship(id) {
+        return this.getResource(`/starthips/${id}`);
+    }
+
+}
+
+const swapi = new SwapiService();
+
+swapi.getPlanet(3).then( (person) => {
+    console.log('person name: ', person.name);
 });
-
-
-
-/*fetch('https://swapi.co/api/people/1')
-    .then((res) => {
-        return res.json();
-    })
-    .then((body) => {
-        console.log(body);
-    });*/
