@@ -83,9 +83,3 @@ export default class SwapiService {
     }
 
 }
-
-//const swapi = new SwapiService();
-
-/*swapi.getPlanet(3).then( (person) => {
-    console.log('person name: ', person.name);
-});*/
