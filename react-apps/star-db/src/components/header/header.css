@@ -1,0 +1,30 @@
+.header {
+    margin: 0 0 2rem;
+}
+
+.header a {
+    color: white;
+}
+
+.header a:hover {
+    color: #00bc8c;
+    text-decoration: none;
+}
+
+.header h3 {
+    margin: 0;
+}
+
+.header .d-flex {
+    margin: auto 0 .15rem auto;
+    padding: 0;
+    list-style: none;
+}
+
+.header .d-flex li {
+    margin: 0 0 0 .75rem;
+}
+
+.header .d-flex li:first-child {
+    margin: 0;
+}
