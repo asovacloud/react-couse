@@ -15,11 +15,11 @@ const App = () => {
             <Header />
             <RandomPlanet />
 
-            <div className="row mb2">
-                <div className="col-dm-6">
+            <div className="row mb2 info-box">
+                <div className="col-dm-6 info-box__col1">
                     <ItemList />
                 </div>
-                <div className="col-md-6">
+                <div className="col-md-6 info-box__col2">
                     <PersonDetails />
                 </div>
             </div>
