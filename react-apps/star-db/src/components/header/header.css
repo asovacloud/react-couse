@@ -1,0 +1,48 @@
+.header {
+    margin: 0 0 2rem;
+}
+
+.header a {
+    color: white;
+}
+
+.header a:hover {
+    color: #00bc8c;
+    text-decoration: none;
+}
+
+.header h3 {
+    margin: 0;
+}
+
+.header .d-flex {
+    margin: auto 0 .15rem auto;
+    padding: 0;
+    list-style: none;
+}
+
+.header .d-flex li {
+    margin: 0 0 0 .75rem;
+}
+
+.header .d-flex li:first-child {
+    margin: 0;
+}
+
+.info-box {
+    padding: 0 0 0 15px;
+}
+
+.info-box .list-group .list-group-item {
+    padding: 0.5rem;
+}
+
+.info-box__col1 {
+    flex-basis: 30%;
+    min-width: 30%;
+}
+
+.info-box__col2 {
+    flex-basis: 70%;
+    min-width: 70%;
+}
