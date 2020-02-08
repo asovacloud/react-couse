@@ -2,17 +2,22 @@
     margin: 0 0 2rem;
 }
 
-.header a {
-    color: white;
-}
-
 .header a:hover {
-    color: #00bc8c;
+    color: white;
     text-decoration: none;
 }
 
 .header h3 {
     margin: 0;
+}
+
+.header h3 a {
+    color: white;
+}
+
+.header h3 a:hover {
+    color: #00bc8c;
+    text-decoration: none;
 }
 
 .header .d-flex {

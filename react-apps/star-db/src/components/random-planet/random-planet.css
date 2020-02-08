@@ -2,10 +2,12 @@
     padding: 0.75rem;
     display: flex;
     margin-bottom: 15px;
+    border: 1px solid #444;
 }
 
 .random-planet .random-planet__images {
     flex-basis: 22%;
+    min-height: 150px;
 }
 
 .random-planet .random-planet__images img {
