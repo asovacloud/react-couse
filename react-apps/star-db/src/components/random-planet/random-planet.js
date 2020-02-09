@@ -20,7 +20,7 @@ export default class RandomPlanet extends Component {
     }
 
     componentWillUnmount() {
-        console.log('componentWillUnmount  START');
+        clearInterval(this.interval);
     }
 
     onPlanetLoaded = (planet) => {
@@ -47,8 +47,6 @@ export default class RandomPlanet extends Component {
     };
 
     render() {
-        console.log('Render() START');
-
         const {
             planet,
             loading,
@@ -91,15 +89,15 @@ const PlanetView = ({ planet }) => {
                 <h4>{ name }</h4>
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">
-                        <span className="term">Population:</span>
+                        <strong className="term">Population:</strong>
                         <span className="value">{ population }</span>
                     </li>
                     <li className="list-group-item">
-                        <span className="term">Rotation Perion:</span>
+                        <strong className="term">Rotation Perion:</strong>
                         <span className="value">{ rotationPeriod }</span>
                     </li>
                     <li className="list-group-item">
-                        <span className="term">Diameter:</span>
+                        <strong className="term">Diameter:</strong>
                         <span className="value">{ diameter }</span>
                     </li>
                 </ul>
