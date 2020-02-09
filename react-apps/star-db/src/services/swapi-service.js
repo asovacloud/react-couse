@@ -14,17 +14,17 @@ export default class SwapiService {
 
     async getAllPeople() {
         const res = await this.getResource(`/people/`);
-        return res.results.map(this._transormPerson())
+        return res.results.map(this._transformPerson);
     }
 
     async getPerson(id) {
         const person = await this.getResource(`/people/${id}`);
-        return this._transormPerson(person)
+        return this._transformPerson(person)
     }
 
     async getAllPlanets() {
         const res = await this.getResource(`/planets/`);
-        return res.results.map(this._transformPlanet())
+        return res.results.map(this._transformPlanet)
     }
 
     async getPlanet(id) {
@@ -34,7 +34,7 @@ export default class SwapiService {
 
     async getAllStarships() {
         const res = await this.getResource(`/starships/`);
-        return res.results.map(this._transformStarship())
+        return res.results.map(this._transformStarship)
     }
 
     getStarship(id) {
@@ -42,13 +42,12 @@ export default class SwapiService {
         return this._transformStarship(starship)
     }
 
-    _extractId(item) {
+    _extractId = (item) => {
         const idRegExp = /\/([0-9]*)\/$/;
-        const id = item.url.match(idRegExp)[1];
-        return id;
-    }
+        return item.url.match(idRegExp)[1];
+    };
 
-    _transformPlanet(planet) {
+    _transformPlanet = (planet) => {
         return {
             id: this._extractId(planet),
             name: planet.name,
@@ -56,9 +55,9 @@ export default class SwapiService {
             rotationPeriod: planet.rotation_period,
             diameter: planet.diameter
         }
-    }
+    };
 
-    _transformStarship(starship) {
+    _transformStarship = (starship) => {
         return {
             id: this._extractId(starship),
             name: starship.name,
@@ -70,16 +69,16 @@ export default class SwapiService {
             passangers: starship.passangers,
             cargoCapacity: starship.cargoCapacity
         }
-    }
+    };
 
-    _transormPerson(person) {
+    _transformPerson = (person) => {
         return {
             id: this._extractId(person),
             name: person.name,
-            gener: person.gender,
+            gender: person.gender,
             birthYear: person.birthYear,
             eyeColor: person.eyeColor
         }
-    }
+    };
 
 }
