@@ -13,7 +13,6 @@ export default class ItemList extends Component {
 
         getData()
             .then((itemList) => {
-                console.log('itemList: ', itemList)
                 this.setState({
                     itemList
                 });
@@ -25,7 +24,9 @@ export default class ItemList extends Component {
         return arr.map((item) => {
             const { id } = item;
 
-            const label = this.props.renderItem(item);
+            const { children } = this.props;
+
+            const label = children(item);
 
             return (
                 <li

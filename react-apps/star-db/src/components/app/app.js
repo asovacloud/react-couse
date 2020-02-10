@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Header from '../header';
-import ItemList from '../item-list';
-import PersonDetails from '../person-details';
 import RandomPlanet from '../random-planet';
 import ErrorIndicator from "../error-indicator";
 import PeoplePage from "../people-page";
@@ -35,7 +33,7 @@ export default class App extends Component {
 
                 <PeoplePage />
 
-                <div className="row mb2 info-box">
+                {/*<div className="row mb2 info-box">
                     <div className="col-dm-6 info-box__col1">
                         <ItemList
                             onItemSelected={ this.onPersonSelected }
@@ -59,7 +57,7 @@ export default class App extends Component {
                     <div className="col-md-6 info-box__col2">
                         <PersonDetails personId={ this.state.selectedPerson } />
                     </div>
-                </div>
+                </div>*/}
 
             </div>
         );
