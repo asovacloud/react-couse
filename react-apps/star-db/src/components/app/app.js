@@ -14,12 +14,6 @@ export default class App extends Component {
         hasError: false
     };
 
-    onPersonSelected = (id) => {
-        this.setState({
-            selectedPerson: id
-        });
-    };
-
     componentDidCatch() {
         this.setState({ hasError: true })
     }

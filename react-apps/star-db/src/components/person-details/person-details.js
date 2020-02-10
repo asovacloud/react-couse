@@ -41,8 +41,6 @@ export default class PersonDetails extends Component {
             return <span>Select a person from a list</span>
         }
 
-        console.log('this.state.person: ', this.state.person);
-
         const {
             id,
             name,
