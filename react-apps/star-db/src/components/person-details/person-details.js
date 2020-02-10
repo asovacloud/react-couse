@@ -41,6 +41,8 @@ export default class PersonDetails extends Component {
             return <span>Select a person from a list</span>
         }
 
+        console.log('this.state.person: ', this.state.person);
+
         const {
             id,
             name,
@@ -50,14 +52,14 @@ export default class PersonDetails extends Component {
         } = this.state.person;
 
         return (
-            <div className="person-details">
-                <div className="person-details__image">
+            <div className="person-details details-box">
+                <div className="image">
                     <img className="person-image"
                         src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
                          alt="character"
                     />
                 </div>
-                <div className="person-details__holder">
+                <div className="holder">
                     <h4>{ name }</h4>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">
