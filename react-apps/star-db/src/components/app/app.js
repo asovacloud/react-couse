@@ -3,7 +3,7 @@ import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ErrorIndicator from "../error-indicator";
 import Row from "../row";
-import ItemDetails from "../item-details";
+import ItemDetails, { Record } from "../item-details";
 import SwapiService from "../../services/swapi-service";
 
 import './app.css';
@@ -38,15 +38,22 @@ export default class App extends Component {
                 itemId={ 11 }
                 getData={ getPerson }
                 getImageUrl={ getPersonImage }
-            />
+            >
+                <Record field="gender" label="Gender" />
+                <Record field="eyeColor" label="Eye Color" />
+            </ItemDetails>
         );
 
         const starshipDetails = (
             <ItemDetails
-                itemId={ 11 }
+                itemId={ 5 }
                 getData={ getStarship }
                 getImageUrl={ getStarshipImage }
-            />
+            >
+                <Record field="model" label="Model" />
+                <Record field="length" label="Length" />
+                <Record field="costInCredits" label="Cost" />
+            </ItemDetails>
         );
 
         return (

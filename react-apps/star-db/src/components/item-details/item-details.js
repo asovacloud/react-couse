@@ -2,6 +2,19 @@ import React, { Component } from 'react';
 
 import './item-details.css';
 
+const Record = ({ item, label, field }) => {
+    return (
+        <li className="list-group-item">
+            <strong className="term">{ label }: </strong>
+            <span>{ item[field] }</span>
+        </li>
+    );
+};
+
+export {
+    Record
+};
+
 export default class ItemDetails extends Component {
 
     state = {
@@ -50,13 +63,7 @@ export default class ItemDetails extends Component {
             return <span>Select a person from a list</span>
         }
 
-        const {
-            id,
-            name,
-            gender,
-            birthYear,
-            eyeColor
-        } = this.state.item;
+        const { name } = this.state.item;
 
         return (
             <div className="person-details details-box">
@@ -69,18 +76,11 @@ export default class ItemDetails extends Component {
                 <div className="holder">
                     <h4>{ name }</h4>
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item">
-                            <strong className="term">Gender: </strong>
-                            <span>{ gender }</span>
-                        </li>
-                        <li className="list-group-item">
-                            <strong className="term">Birth Year: </strong>
-                            <span>{ birthYear }</span>
-                        </li>
-                        <li className="list-group-item">
-                            <strong className="term">Eye color: </strong>
-                            <span>{ eyeColor }</span>
-                        </li>
+                        {
+                            React.Children.map(this.props.children, (child) => {
+                                return React.cloneElement(child, { item });
+                            })
+                        }
                     </ul>
                 </div>
             </div>

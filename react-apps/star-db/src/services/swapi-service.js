@@ -76,8 +76,8 @@ export default class SwapiService {
             name: starship.name,
             model: starship.model,
             manufacturer: starship.manufacturer,
-            costInCredits: starship.costInCredits,
-            lenght: starship.length,
+            costInCredits: starship.cost_in_credits,
+            length: starship.length,
             crew: starship.crew,
             passangers: starship.passangers,
             cargoCapacity: starship.cargoCapacity
