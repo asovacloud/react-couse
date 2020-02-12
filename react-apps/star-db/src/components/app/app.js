@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ErrorIndicator from "../error-indicator";
-import Row from "../row";
-import ItemDetails, { Record } from "../item-details";
+// import Row from "../row";
+// import ItemDetails, { Record } from "../item-details";
 import SwapiService from "../../services/swapi-service";
+import ItemList from "../item-list";
 
 import './app.css';
 
@@ -27,13 +28,15 @@ export default class App extends Component {
         }
 
         const {
-            getPerson,
+            /*getPerson,
             getStarship,
             getPersonImage,
-            getStarshipImage
+            getStarshipImage,*/
+            getAllPeople,
+            getAllPlanets
         } = this.swapiService;
 
-        const personDetails = (
+        /*const personDetails = (
             <ItemDetails
                 itemId={ 11 }
                 getData={ getPerson }
@@ -54,17 +57,31 @@ export default class App extends Component {
                 <Record field="length" label="Length" />
                 <Record field="costInCredits" label="Cost" />
             </ItemDetails>
-        );
+        );*/
 
         return (
             <div className="wrapper">
                 <Header />
                 <RandomPlanet />
 
-                <Row
+                {/*<Row
                     left={ personDetails }
                     right={ starshipDetails }
-                />
+                />*/}
+
+                <ItemList
+                    getData={ getAllPeople }
+                    onItemSelected={() => {}}
+                >
+                    { ({name}) => <span>{name}</span> }
+                </ItemList>
+
+                <ItemList
+                    getData={ getAllPlanets }
+                    onItemSelected={() => {}}
+                >
+                    { ({name}) => <span>{name}</span> }
+                </ItemList>
 
             </div>
         );
