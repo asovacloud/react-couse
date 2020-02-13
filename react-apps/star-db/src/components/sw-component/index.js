@@ -8,7 +8,7 @@ import {
     PersonList,
     PlanetList,
     StarshipList
-} from './item-list';
+} from './item-lists';
 
 
 export {
