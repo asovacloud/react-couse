@@ -4,7 +4,7 @@ import RandomPlanet from '../random-planet';
 import ErrorIndicator from "../error-indicator";
 import SwapiService from "../../services/swapi-service";
 import ErrorBoundry from "../error-boundry";
-
+import { SwapiServiceProvider } from '../swapi-service-contest';
 
 import {
     PersonDetails,
@@ -37,19 +37,21 @@ export default class App extends Component {
 
         return (
             <ErrorBoundry>
-                <div className="wrapper">
-                    <Header />
-                    <RandomPlanet />
+                <SwapiServiceProvider value={ this.swapiService }>
+                    <div className="wrapper">
+                        <Header />
+                        <RandomPlanet />
 
-                    <PersonDetails itemId={ 11 } />
-                    <PlanetDetails itemId={ 5 } />
-                    <StarshipDetails itemId={ 9 } />
+                        <PersonDetails itemId={ 11 } />
+                        <PlanetDetails itemId={ 5 } />
+                        <StarshipDetails itemId={ 9 } />
 
-                    <PersonList />
-                    <StarshipList />
-                    <PlanetList />
+                        <PersonList />
+                        <StarshipList />
+                        <PlanetList />
 
-                </div>
+                    </div>
+                </SwapiServiceProvider>
             </ErrorBoundry>
         );
     }
