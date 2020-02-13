@@ -16,13 +16,23 @@ import {
 } from "../sw-component";
 
 import './app.css';
+import DummySwapiService from "../../services/dummy-swapi-service";
 
 export default class App extends Component {
 
-    swapiService = new SwapiService();
-
     state = {
-        hasError: false
+        hasError: false,
+        swapiService: new DummySwapiService()
+    };
+
+    onServiceChage = () => {
+        this.setState(({ swapiService }) => {
+            const Service = ( swapiService instanceof SwapiService ) ? DummySwapiService : SwapiService;
+
+            return {
+                swapiService: new Service()
+            };
+        });
     };
 
     componentDidCatch() {
@@ -37,9 +47,9 @@ export default class App extends Component {
 
         return (
             <ErrorBoundry>
-                <SwapiServiceProvider value={ this.swapiService }>
+                <SwapiServiceProvider value={ this.state.swapiService }>
                     <div className="wrapper">
-                        <Header />
+                        <Header onServiceChange={ this.onServiceChage } />
                         <RandomPlanet />
 
                         <PersonDetails itemId={ 11 } />
