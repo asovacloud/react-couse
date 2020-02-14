@@ -6,14 +6,7 @@ import SwapiService from "../../services/swapi-service";
 import ErrorBoundry from "../error-boundry";
 import { SwapiServiceProvider } from '../swapi-service-contest';
 
-import {
-    PersonDetails,
-    PlanetDetails,
-    StarshipDetails,
-    PersonList,
-    PlanetList,
-    StarshipList
-} from "../sw-component";
+import { PeoplePage, PlanetsPage, StarshipsPage } from '../pages';
 
 import './app.css';
 import DummySwapiService from "../../services/dummy-swapi-service";
@@ -22,7 +15,7 @@ export default class App extends Component {
 
     state = {
         hasError: false,
-        swapiService: new DummySwapiService()
+        swapiService: new SwapiService()
     };
 
     onServiceChage = () => {
@@ -50,16 +43,14 @@ export default class App extends Component {
                 <SwapiServiceProvider value={ this.state.swapiService }>
                     <div className="wrapper">
                         <Header onServiceChange={ this.onServiceChage } />
+
                         <RandomPlanet />
 
-                        <PersonDetails itemId={ 11 } />
-                        <PlanetDetails itemId={ 5 } />
-                        <StarshipDetails itemId={ 9 } />
+                        <PeoplePage />
 
-                        <PersonList />
-                        <StarshipList />
-                        <PlanetList />
+                        <PlanetsPage />
 
+                        <StarshipsPage />
                     </div>
                 </SwapiServiceProvider>
             </ErrorBoundry>
