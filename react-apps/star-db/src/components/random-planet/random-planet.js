@@ -7,6 +7,10 @@ import './random-planet.css';
 
 export default class RandomPlanet extends Component {
 
+    static defaultProps = {
+        updateInterval: 10000
+    };
+
     swapiService = new SwapiService();
 
     state = {
@@ -15,8 +19,9 @@ export default class RandomPlanet extends Component {
     };
 
     componentDidMount() {
+        const { updateInterval } = this.props;
         this.updatePlanet();
-        this.interval = setInterval(this.updatePlanet, 2500);
+        this.interval = setInterval(this.updatePlanet, updateInterval);
     }
 
     componentWillUnmount() {
@@ -41,9 +46,9 @@ export default class RandomPlanet extends Component {
     updatePlanet = () => {
         const id = Math.floor(Math.random()*18) + 2;
         this.swapiService
-            .getPlanet(id)
-            .then(this.onPlanetLoaded)
-            .catch(this.onError);
+          .getPlanet(id)
+          .then(this.onPlanetLoaded)
+          .catch(this.onError);
     };
 
     render() {
@@ -65,6 +70,7 @@ export default class RandomPlanet extends Component {
             { errorMessage }
         </div>
     }
+
 }
 
 const PlanetView = ({ planet }) => {
@@ -77,31 +83,31 @@ const PlanetView = ({ planet }) => {
     } = planet;
 
     return (
-        <React.Fragment>
-            <div className="random-planet__images">
-                <img
-                    className="planet-image"
-                    src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
-                    alt="random planet"
-                />
-            </div>
-            <div className="random-planet__holder">
-                <h4>{ name }</h4>
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item">
-                        <strong className="term">Population:</strong>
-                        <span className="value">{ population }</span>
-                    </li>
-                    <li className="list-group-item">
-                        <strong className="term">Rotation Perion:</strong>
-                        <span className="value">{ rotationPeriod }</span>
-                    </li>
-                    <li className="list-group-item">
-                        <strong className="term">Diameter:</strong>
-                        <span className="value">{ diameter }</span>
-                    </li>
-                </ul>
-            </div>
-        </React.Fragment>
+      <React.Fragment>
+          <div className="random-planet__images">
+              <img
+                className="planet-image"
+                src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+                alt="random planet"
+              />
+          </div>
+          <div className="random-planet__holder">
+              <h4>{ name }</h4>
+              <ul className="list-group list-group-flush">
+                  <li className="list-group-item">
+                      <strong className="term">Population:</strong>
+                      <span className="value">{ population }</span>
+                  </li>
+                  <li className="list-group-item">
+                      <strong className="term">Rotation Perion:</strong>
+                      <span className="value">{ rotationPeriod }</span>
+                  </li>
+                  <li className="list-group-item">
+                      <strong className="term">Diameter:</strong>
+                      <span className="value">{ diameter }</span>
+                  </li>
+              </ul>
+          </div>
+      </React.Fragment>
     );
 };
