@@ -2,7 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 const App = () => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(1);
   const [visible, setVisible] = useState(true);
 
   if (visible) {
@@ -17,7 +17,7 @@ const App = () => {
         <button
           onClick={() => setVisible(false)}
         >hide</button>
-        <Notification />
+        <PlanetInfo id={value} />
       </div>
     );
   } else {
@@ -29,54 +29,23 @@ const App = () => {
   }
 };
 
-const HookCounter = ({ value }) => {
+const PlanetInfo = ( {id} ) => {
+
+  const [planetName, setPlanetName] = useState(null);
 
   useEffect(() => {
-    console.log('componentDidMount()');
-    return () => console.log('componentWillUnmount()');
-  }, []);
-
-  useEffect(() => {
-    console.log('componentDidUpdate()');
-  });
-
-  return <p>{ value }</p>
-};
-
-class ClassCounter extends Component {
-  componentDidMount() {
-    console.log('class: mount');
-  }
-
-  componentDidUpdate(props) {
-    console.log('class: update');
-  }
-
-  componentWillUnmount() {
-    console.log('class: unmount');
-  }
-
-  render() {
-    return <p>{this.props.value}</p>
-  }
-}
-
-const Notification = () => {
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setVisible(false);
-    }, 3000);
-    return () => clearTimeout(timeout);
-  }, []);
+    let cancelled = false;
+    fetch(`https://swapi.co/api/planets/${id}/`)
+      .then(res => res.json())
+      .then(data => !cancelled && setPlanetName(data.name));
+    return () => cancelled = true
+  }, [id]);
 
   return (
-    <div>
-      { visible && <p>Yo yo yo !!!</p> }
+    <div style={{marginTop: 20+'px'}}>
+      {id} - { planetName }
     </div>
   );
-
 };
 
 ReactDOM.render(<App/>, document.getElementById('root'));
