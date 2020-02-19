@@ -29,8 +29,7 @@ const App = () => {
   }
 };
 
-const PlanetInfo = ( {id} ) => {
-
+const usePlanetInfo = (id) => {
   const [planetName, setPlanetName] = useState(null);
 
   useEffect(() => {
@@ -40,6 +39,15 @@ const PlanetInfo = ( {id} ) => {
       .then(data => !cancelled && setPlanetName(data.name));
     return () => cancelled = true
   }, [id]);
+
+  return (
+    <h1>{ planetName }</h1>
+  );
+};
+
+const PlanetInfo = ({ id }) => {
+
+  const planetName = usePlanetInfo(id);
 
   return (
     <div style={{marginTop: 20+'px'}}>
