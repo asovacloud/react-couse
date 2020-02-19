@@ -9,21 +9,35 @@ const App = () => {
     return (
       <div>
         <button
+          onClick={() => setValue((v) => v - 1)}
+        >-</button>
+        <button
           onClick={() => setValue((v) => v + 1)}
         >+</button>
         <button
           onClick={() => setVisible(false)}
         >hide</button>
-        <ClassCounter value={value}/>
         <HookCounter value={value}/>
+        <ClassCounter value={value}/>
       </div>
     );
   } else {
-    return <button onClick={() => setVisible(true)}>show</button>
+    return <button
+      onClick={() => setVisible(true)}
+    >
+      show
+    </button>
   }
 };
 
 const HookCounter = ({ value }) => {
+
+  useEffect(() => {
+    console.log('Start useEffect()');
+
+    return () => console.log('Stop useEffect()');
+  }, [ value ]);
+
   return <p>{ value }</p>
 };
 
