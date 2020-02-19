@@ -17,8 +17,7 @@ const App = () => {
         <button
           onClick={() => setVisible(false)}
         >hide</button>
-        <HookCounter value={value}/>
-        <ClassCounter value={value}/>
+        <Notification />
       </div>
     );
   } else {
@@ -33,10 +32,13 @@ const App = () => {
 const HookCounter = ({ value }) => {
 
   useEffect(() => {
-    console.log('Start useEffect()');
+    console.log('componentDidMount()');
+    return () => console.log('componentWillUnmount()');
+  }, []);
 
-    return () => console.log('Stop useEffect()');
-  }, [ value ]);
+  useEffect(() => {
+    console.log('componentDidUpdate()');
+  });
 
   return <p>{ value }</p>
 };
@@ -59,5 +61,22 @@ class ClassCounter extends Component {
   }
 }
 
+const Notification = () => {
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setVisible(false);
+    }, 3000);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  return (
+    <div>
+      { visible && <p>Yo yo yo !!!</p> }
+    </div>
+  );
+
+};
 
 ReactDOM.render(<App/>, document.getElementById('root'));
