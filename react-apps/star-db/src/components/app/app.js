@@ -7,9 +7,12 @@ import ErrorBoundry from "../error-boundry";
 import { SwapiServiceProvider } from '../swapi-service-contest';
 
 import { PeoplePage, PlanetsPage, StarshipsPage } from '../pages';
+import DummySwapiService from "../../services/dummy-swapi-service";
 
 import './app.css';
-import DummySwapiService from "../../services/dummy-swapi-service";
+
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 
 export default class App extends Component {
 
@@ -41,17 +44,18 @@ export default class App extends Component {
         return (
             <ErrorBoundry>
                 <SwapiServiceProvider value={ this.state.swapiService }>
-                    <div className="wrapper">
-                        <Header onServiceChange={ this.onServiceChage } />
+                    <Router>
+                        <div className="wrapper">
+                            <Header onServiceChange={ this.onServiceChage } />
 
-                        <RandomPlanet />
+                            <RandomPlanet />
 
-                        <PeoplePage />
+                            <Route path="/people" component={PeoplePage} />
+                            <Route path="/planets" component={PlanetsPage} />
+                            <Route path="/starships" component={StarshipsPage} />
 
-                        <PlanetsPage />
-
-                        <StarshipsPage />
-                    </div>
+                        </div>
+                    </Router>
                 </SwapiServiceProvider>
             </ErrorBoundry>
         );
