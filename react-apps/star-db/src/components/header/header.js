@@ -3,31 +3,31 @@ import { Link } from 'react-router-dom';
 import './header.css';
 
 const Header = ({ onServiceChange }) => {
-    return (
-        <div className="header d-flex">
-            <h3>Star DB</h3>
+  return (
+    <div className="header d-flex">
+      <h3><Link to="/">Star DB</Link></h3>
 
-            <ul className="d-flex">
-                <li>
-                    <Link to="/people">People</Link>
-                </li>
-                <li>
-                    <Link to="/planets">Planets</Link>
-                </li>
-                <li>
-                    <Link to="/starships">Starships</Link>
-                </li>
-            </ul>
+      <ul className="d-flex">
+        <li>
+          <Link to="/people">People</Link>
+        </li>
+        <li>
+          <Link to="/planets">Planets</Link>
+        </li>
+        <li>
+          <Link to="/starships">Starships</Link>
+        </li>
+      </ul>
 
-            <button
-                onClick={ onServiceChange }
-                className="btn-info btn-sm"
-            >
-                Change Service
-            </button>
+      <button
+        onClick={ onServiceChange }
+        className="btn-info btn-sm"
+      >
+        Change Service
+      </button>
 
-        </div>
-    );
+    </div>
+  );
 };
 
 export default Header;
