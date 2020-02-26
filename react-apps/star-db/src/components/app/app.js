@@ -2,24 +2,37 @@ import React, { Component } from 'react';
 import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ErrorIndicator from "../error-indicator";
-import SwapiService from "../../services/swapi-service";
-import ErrorBoundry from "../error-boundry";
+import SwapiService from '../../services/swapi-service';
+import ErrorBoundry from '../error-boundry';
 import { SwapiServiceProvider } from '../swapi-service-contest';
 
-import { PeoplePage, PlanetsPage, StarshipsPage } from '../pages';
-import DummySwapiService from "../../services/dummy-swapi-service";
+import {
+    PeoplePage,
+    PlanetsPage,
+    StarshipsPage,
+    LoginPage,
+    SecretPage
+} from '../pages';
+import DummySwapiService from '../../services/dummy-swapi-service';
 
 import './app.css';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import {StarshipDetails} from "../sw-component";
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import {StarshipDetails} from '../sw-component';
 
 
 export default class App extends Component {
 
     state = {
         hasError: false,
-        swapiService: new SwapiService()
+        swapiService: new SwapiService(),
+        isLoggedIn: false
+    };
+
+    onLogin = () => {
+        this.setState({
+            isLoggedIn: true
+        });
     };
 
     onServiceChage = () => {
@@ -42,6 +55,8 @@ export default class App extends Component {
             return <ErrorIndicator />
         }
 
+        const { isLoggedIn } = this.state;
+
         return (
             <ErrorBoundry>
                 <SwapiServiceProvider value={ this.state.swapiService }>
@@ -51,29 +66,41 @@ export default class App extends Component {
 
                             <RandomPlanet />
 
-                            <Route
-                              path="/" render={() => <h2>Welcome the Star DB!</h2>}
-                              exact
-                            />
-                            <Route
-                              path="/people"
-                              render={() => <h2>People</h2>}
-                              exact
-                            />
-                            <Route path="/people/:id?" component={PeoplePage} />
-                            <Route path="/planets" component={PlanetsPage} />
-                            <Route
-                              path="/starships"
-                              component={StarshipsPage}
-                              exact
-                            />
-                            <Route path="/starships/:id"
-                                render={({match}) => {
-                                    const { id } = match.params;
-                                    return <StarshipDetails itemId={ id } />
-                                }}
-                            />
-
+                            <Switch>
+                                <Route
+                                  path="/" render={() => <h2>Welcome the Star DB!</h2>}
+                                  exact
+                                />
+                                <Route path="/people/:id?" component={PeoplePage} />
+                                <Route path="/planets" component={PlanetsPage} />
+                                <Route
+                                  path="/starships"
+                                  component={StarshipsPage}
+                                  exact
+                                />
+                                <Route path="/starships/:id"
+                                    render={({match}) => {
+                                        const { id } = match.params;
+                                        return <StarshipDetails itemId={ id } />
+                                    }}
+                                />
+                                <Route
+                                  path="/login"
+                                  render={() => (
+                                    <LoginPage
+                                      isLoggedIn={isLoggedIn}
+                                      onLogin={this.onLogin}
+                                    />
+                                  )}
+                                />
+                                <Route
+                                  path="/secret"
+                                  render={() => (
+                                    <SecretPage isLoggedIn={isLoggedIn} />
+                                  )}
+                                />
+                                <Route render={() => <h2>Page not found!</h2>} />
+                            </Switch>
                         </div>
                     </Router>
                 </SwapiServiceProvider>
