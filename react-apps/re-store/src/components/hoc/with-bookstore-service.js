@@ -1,6 +1,5 @@
 import React from 'react';
-import { BookstoreServiceConsumer } formimport { BookstoreServiceProvider } from '../bookstore-service-context';
- '../bookstore-service-context/';
+import { BookstoreServiceConsumer } from '../bookstore-service-context/';
 
 const withBookstoreService = () => (Wrapped) => {
   return (props) => {
@@ -8,10 +7,10 @@ const withBookstoreService = () => (Wrapped) => {
       <BookstoreServiceConsumer>
         {
           (bookstoreService) => {
-            <Wrapped
+            return (<Wrapped
               { ...props }
               bookstoreService={ bookstoreService }
-            />
+            />);
           }
         }
       </BookstoreServiceConsumer>
