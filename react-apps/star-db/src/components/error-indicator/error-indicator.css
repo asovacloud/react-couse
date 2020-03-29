@@ -1,0 +1,25 @@
+.error-indicator {
+    min-height: 153px;
+    color: #ffa500;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.error-indicator__holder__boom {
+    margin: 0 0 0.5rem;
+}
+
+.error-indicator__holder__img {
+    width: 60px;
+    margin: 0 auto 0.5rem;
+}
+
+.error-indicator__holder__img img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
