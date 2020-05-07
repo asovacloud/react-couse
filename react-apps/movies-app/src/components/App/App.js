@@ -11,21 +11,21 @@ class App extends Component {
     this.state = {
       movies: [],
       moviesWillWatch: [],
-      sort_by: "revenue.desc"
+      sort_by: "revenue.desc",
     }
   }
 
   componentDidMount() {
-    fetch(`${API_URL}/discover/movie?api_key=${API_KEY_3}&sort_by=${this.state.sort_by}`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          movies: data.results,
-        });
-      });
+    this.getMovies();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.sort_by !== this.state.sort_by) {
+      this.getMovies();
+    }
+  }
+
+  getMovies = () => {
     fetch(`${API_URL}/discover/movie?api_key=${API_KEY_3}&sort_by=${this.state.sort_by}`)
       .then(response => response.json())
       .then(data => {
@@ -39,6 +39,15 @@ class App extends Component {
     const data = this.state.movies.filter(item => item.id !== id);
     this.setState({
       movies: data,
+    });
+  };
+
+  deleteMovieFromWillWatch = movie => {
+    console.log('Delete: ', this.state.moviesWillWatch);
+    console.log('Delete 1: ', movie);
+    const newData = this.state.moviesWillWatch.filter(el => el.id !== movie.id);
+    this.setState({
+      moviesWillWatch: newData,
     });
   };
 
@@ -73,6 +82,7 @@ class App extends Component {
                 <MovieItem
                   movie={ movie }
                   deleteHandle={ this.deleteHandle }
+                  deleteMovieFromWillWatch={ this.deleteMovieFromWillWatch }
                   addMovieToWillWatch={ this.addMovieToWillWatch }
                 />
               </div>
