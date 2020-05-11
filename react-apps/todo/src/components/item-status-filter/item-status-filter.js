@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 
 export default class ItemStatusFilter extends Component {
-  constructor(props) {
-    super(props);
-    /*state = {
-            filter: ''
-        }*/
+  state = {
+    filter: ''
   }
 
   buttons = [

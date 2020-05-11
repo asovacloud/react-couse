@@ -16,6 +16,15 @@ export default class MovieItem extends Component {
       addMovieToWillWatch,
       deleteMovieFromWillWatch,
     } = this.props;
+
+    const { willWatch } = this.state;
+
+    const btnWillWatchClasses = classNames({
+      btn: true,
+      'btn-success': !willWatch,
+      'btn-secondary': willWatch,
+    });
+
     return (
       <div className="card border-primary">
         <img
@@ -29,14 +38,14 @@ export default class MovieItem extends Component {
           <div className="d-flex justify-content-between align-items-center mb-2">
             <div className="mb-0">Rating: {movie.vote_average}</div>
             <button type = "button"
-              className = "btn btn-success"
+              className = { btnWillWatchClasses }
               onClick = {() => {
                 this.setState({
-                  willWatch: !this.state.willWatch,
+                  willWatch: !willWatch,
                 });
-                { this.state.willWatch ? deleteMovieFromWillWatch(movie) : addMovieToWillWatch(movie) }
+                { willWatch ? deleteMovieFromWillWatch(movie) : addMovieToWillWatch(movie) }
               }} >
-              { this.state.willWatch ? 'Remove to Watch' : 'Add to Watch' }
+              { willWatch ? 'Remove to Watch' : 'Add to Watch' }
             </button>
           </div>
           <button
