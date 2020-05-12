@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/react-couse/static/css/main.b178758d.chunk.css",
-    "main.js": "/react-couse/static/js/main.4356b737.chunk.js",
-    "main.js.map": "/react-couse/static/js/main.4356b737.chunk.js.map",
+    "main.css": "/react-couse/static/css/main.7fb22a1e.chunk.css",
+    "main.js": "/react-couse/static/js/main.f287c784.chunk.js",
+    "main.js.map": "/react-couse/static/js/main.f287c784.chunk.js.map",
     "runtime-main.js": "/react-couse/static/js/runtime-main.a9ebef27.js",
     "runtime-main.js.map": "/react-couse/static/js/runtime-main.a9ebef27.js.map",
-    "static/css/2.de424728.chunk.css": "/react-couse/static/css/2.de424728.chunk.css",
-    "static/js/2.15a1b198.chunk.js": "/react-couse/static/js/2.15a1b198.chunk.js",
-    "static/js/2.15a1b198.chunk.js.map": "/react-couse/static/js/2.15a1b198.chunk.js.map",
+    "static/css/2.42d3a760.chunk.css": "/react-couse/static/css/2.42d3a760.chunk.css",
+    "static/js/2.da6d2a35.chunk.js": "/react-couse/static/js/2.da6d2a35.chunk.js",
+    "static/js/2.da6d2a35.chunk.js.map": "/react-couse/static/js/2.da6d2a35.chunk.js.map",
     "index.html": "/react-couse/index.html",
-    "precache-manifest.54b7f984ac6d0dd7c975bbefe4e2be37.js": "/react-couse/precache-manifest.54b7f984ac6d0dd7c975bbefe4e2be37.js",
+    "precache-manifest.ab6f513f77c8e400918a6e976cdc14d3.js": "/react-couse/precache-manifest.ab6f513f77c8e400918a6e976cdc14d3.js",
     "service-worker.js": "/react-couse/service-worker.js",
-    "static/css/2.de424728.chunk.css.map": "/react-couse/static/css/2.de424728.chunk.css.map",
-    "static/css/main.b178758d.chunk.css.map": "/react-couse/static/css/main.b178758d.chunk.css.map",
-    "static/js/2.15a1b198.chunk.js.LICENSE.txt": "/react-couse/static/js/2.15a1b198.chunk.js.LICENSE.txt"
+    "static/css/2.42d3a760.chunk.css.map": "/react-couse/static/css/2.42d3a760.chunk.css.map",
+    "static/css/main.7fb22a1e.chunk.css.map": "/react-couse/static/css/main.7fb22a1e.chunk.css.map",
+    "static/js/2.da6d2a35.chunk.js.LICENSE.txt": "/react-couse/static/js/2.da6d2a35.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.a9ebef27.js",
-    "static/css/2.de424728.chunk.css",
-    "static/js/2.15a1b198.chunk.js",
-    "static/css/main.b178758d.chunk.css",
-    "static/js/main.4356b737.chunk.js"
+    "static/css/2.42d3a760.chunk.css",
+    "static/js/2.da6d2a35.chunk.js",
+    "static/css/main.7fb22a1e.chunk.css",
+    "static/js/main.f287c784.chunk.js"
   ]
 }
