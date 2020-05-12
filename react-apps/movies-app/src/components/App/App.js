@@ -12,6 +12,8 @@ class App extends Component {
       movies: [],
       moviesWillWatch: [],
       sort_by: "revenue.desc",
+      current_page: 2,
+      total_pages: null,
     }
   }
 
@@ -20,18 +22,23 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.sort_by !== this.state.sort_by) {
+    if (
+      prevState.sort_by !== this.state.sort_by
+      || prevState.current_page !== this.state.current_page
+    ) {
       this.getMovies();
     }
   }
 
   getMovies = () => {
-    fetch(`${API_URL}/discover/movie?api_key=${API_KEY_3}&sort_by=${this.state.sort_by}`)
+    fetch(`${API_URL}/discover/movie?api_key=${API_KEY_3}&sort_by=${this.state.sort_by}&page=${this.state.current_page}`)
       .then(response => response.json())
       .then(data => {
         this.setState({
           movies: data.results,
+          total_pages: data.total_pages,
         });
+        console.log("App -> getMovies -> data.results", data)
       });
   }
 
@@ -43,8 +50,6 @@ class App extends Component {
   };
 
   deleteMovieFromWillWatch = movie => {
-    console.log('Delete: ', this.state.moviesWillWatch);
-    console.log('Delete 1: ', movie);
     const newData = this.state.moviesWillWatch.filter(el => el.id !== movie.id);
     this.setState({
       moviesWillWatch: newData,
@@ -56,7 +61,6 @@ class App extends Component {
     this.setState({
       moviesWillWatch: updateMovieToWillWatch,
     });
-    console.log(updateMovieToWillWatch);
   };
 
   updateSortBy = value => {
@@ -65,8 +69,20 @@ class App extends Component {
     });
   };
 
+  prevPage = () => {
+    this.setState(state => {
+      return { current_page: state.current_page - 1 };
+    });
+  };
+
+  nextPage = () => {
+    this.setState(state => {
+      return { current_page: state.current_page + 1 };
+    });
+  };
+
   render() {
-    const { movies, moviesWillWatch, sort_by } = this.state;
+    const { movies, moviesWillWatch, sort_by, total_pages, current_page } = this.state;
     return (
       <div className="container pt-5">
         <div className="row mb-3">
@@ -88,6 +104,15 @@ class App extends Component {
               </div>
               })
             }
+            </div>
+            <div className="row ml-0 mb-4 d-flex align-items-center">
+              {
+                (current_page > 1) && <button className="btn btn-info btn-xs" onClick={ this.prevPage }>Prev</button>
+              }
+              {
+                (current_page < total_pages) && <button className="btn btn-info btn-xs ml-1" onClick={ this.nextPage }>Next</button>
+              }
+              <div class="current-info ml-3">{ current_page }/{ total_pages }</div>
             </div>
           </div>
           <div className="col-3">
