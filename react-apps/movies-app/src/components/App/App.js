@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import MovieItem from '../MovieItem';
 import MovieTabs from '../MovieTabs';
+import Pagination from 'rc-pagination';
+import "rc-pagination/assets/index.css";
 
 
 import { API_URL, API_KEY_3  } from '../../utils/api';
@@ -12,7 +14,7 @@ class App extends Component {
       movies: [],
       moviesWillWatch: [],
       sort_by: "revenue.desc",
-      current_page: 2,
+      current_page: 1,
       total_pages: null,
     }
   }
@@ -83,20 +85,39 @@ class App extends Component {
     });
   };
 
+  paginationWillUpdate = page => {
+    this.setState(state => {
+      return { current_page: page };
+    });
+  }
+
   render() {
     const { movies, moviesWillWatch, sort_by, total_pages, current_page } = this.state;
     return (
-      <div className="container pt-5">
-        <div className="row mb-3">
+      <div className="container mt-4">
+        <div className="row mb-4">
           <div className="col-12">
             <MovieTabs updateSortBy={ this.updateSortBy } sort_by={ sort_by } />
           </div>
         </div>
-        <div className="row">
-          <div className="col-9">
+        <div className="row flex-row-reverse">
+          <div className="col-lg-3 col-md-12">
+            <div className="card p-2 mt-lg-5 mb-md-3_ mb-3">Will Watch: { moviesWillWatch.length }</div>
+          </div>
+          <div className="col-lg-9 col-md-12">
+            <div className="row ml-0 d-flex align-items-center">
+              <Pagination
+                className="ant-pagination"
+                onChange={ this.paginationWillUpdate }
+                defaultCurrent={ current_page }
+                defaultPageSize={ 1 }
+                pageSize={ 1 }
+                total={ 500 }
+              />
+            </div>
             <div className="row">
             { movies.map(movie => {
-                return <div key={ movie.id } className="col-6 mb-4">
+                return <div key={ movie.id } className="col-md-6 mb-4">
                 <MovieItem
                   movie={ movie }
                   deleteHandle={ this.deleteHandle }
@@ -114,11 +135,8 @@ class App extends Component {
               {
                 (current_page < total_pages) && <button className="btn btn-info btn-xs ml-1" onClick={ this.nextPage }>Next</button>
               }
-              <div class="current-info ml-3">{ current_page }/{ total_pages }</div>
+              <div className="current-info ml-3">{ current_page }/{ total_pages }</div>
             </div>
-          </div>
-          <div className="col-3">
-            <p>Will Watch: { moviesWillWatch.length }</p>
           </div>
         </div>
       </div>
