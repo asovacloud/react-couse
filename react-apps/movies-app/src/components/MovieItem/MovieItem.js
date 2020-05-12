@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
+import './MovieItem.css';
 
 export default class MovieItem extends Component {
   constructor() {
@@ -26,14 +27,16 @@ export default class MovieItem extends Component {
     });
 
     return (
-      <div className="card border-primary">
-        <img
-          className="card__img-top"
-          src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path
-            || movie.poster_path}`}
-          alt=""
-        />
-        <div className="card-body text-white bg-primary">
+      <div className="card border-muted">
+        <div className="card_img-holder">
+          <img
+            className="card__img-top"
+            src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path
+              || movie.poster_path}`}
+            alt=""
+          />
+        </div>
+        <div className="card-body">
           <h4 className="card-title">{ movie.title }</h4>
           <div className="d-flex justify-content-between align-items-center mb-2">
             <div className="mb-0">Rating: {movie.vote_average}</div>
