@@ -43,7 +43,7 @@ export default class MovieItem extends Component {
                 this.setState({
                   willWatch: !willWatch,
                 });
-                { willWatch ? deleteMovieFromWillWatch(movie) : addMovieToWillWatch(movie) }
+                willWatch ? deleteMovieFromWillWatch(movie) : addMovieToWillWatch(movie);
               }} >
               { willWatch ? 'Remove to Watch' : 'Add to Watch' }
             </button>

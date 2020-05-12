@@ -66,7 +66,8 @@ class App extends Component {
   updateSortBy = value => {
     this.setState({
       sort_by: value,
-      current_page: 1,
+
+      current_page: 1
     });
   };
 
