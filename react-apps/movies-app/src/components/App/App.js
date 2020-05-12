@@ -94,48 +94,67 @@ class App extends Component {
   render() {
     const { movies, moviesWillWatch, sort_by, total_pages, current_page } = this.state;
     return (
-      <div className="container mt-4">
-        <div className="row mb-4">
-          <div className="col-12">
-            <MovieTabs updateSortBy={ this.updateSortBy } sort_by={ sort_by } />
+      <div className="wrapper">
+        <div className="navbar navbar-dark bg-dark shadow-sm mb-5 navbar-expand-xl">
+          <div className="container d-flex justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+              <strong>Movies App</strong>
+            </a>
+            <div class="navbar-nav-scroll nav-pills">
+              <ul className="navbar-nav bd-navbar-nav flex-row">
+                <li className="nav-item">
+                  <a href="#" className="nav-link active">Hompage</a>
+                </li>
+                <li className="nav-item">
+                  <a href="#" className="nav-link">Wishlist</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div className="row flex-row-reverse">
-          <div className="col-lg-3 col-md-12">
-            <div className="card p-2 mt-lg-5 mb-md-3_ mb-3">Will Watch: { moviesWillWatch.length }</div>
-          </div>
-          <div className="col-lg-9 col-md-12">
-            <div className="row ml-0 d-flex align-items-center">
-              <Pagination
-                className="ant-pagination"
-                onChange={ this.paginationWillUpdate }
-                defaultCurrent={ current_page }
-                defaultPageSize={ 1 }
-                pageSize={ 1 }
-                total={ 500 }
-              />
+        <div className="container">
+          <div className="row mb-4">
+            <div className="col-12">
+              <MovieTabs updateSortBy={ this.updateSortBy } sort_by={ sort_by } />
             </div>
-            <div className="row">
-            { movies.map(movie => {
-                return <div key={ movie.id } className="col-md-6 mb-4">
-                <MovieItem
-                  movie={ movie }
-                  deleteHandle={ this.deleteHandle }
-                  deleteMovieFromWillWatch={ this.deleteMovieFromWillWatch }
-                  addMovieToWillWatch={ this.addMovieToWillWatch }
+          </div>
+          <div className="row flex-row-reverse">
+            <div className="col-lg-3 col-md-12">
+              <div className="card p-2 mt-lg-5 mb-md-3_ mb-3">Will Watch: { moviesWillWatch.length }</div>
+            </div>
+            <div className="col-lg-9 col-md-12">
+              <div className="row ml-0 d-flex align-items-center">
+                <Pagination
+                  className="ant-pagination"
+                  onChange={ this.paginationWillUpdate }
+                  defaultCurrent={ current_page }
+                  defaultPageSize={ 1 }
+                  pageSize={ 1 }
+                  total={ 500 }
                 />
               </div>
-              })
-            }
-            </div>
-            <div className="row ml-0 mb-4 d-flex align-items-center">
-              {
-                (current_page > 1) && <button className="btn btn-info btn-xs" onClick={ this.prevPage }>Prev</button>
+              <div className="row">
+              { movies.map(movie => {
+                  return <div key={ movie.id } className="col-md-6 mb-4">
+                  <MovieItem
+                    movie={ movie }
+                    deleteHandle={ this.deleteHandle }
+                    deleteMovieFromWillWatch={ this.deleteMovieFromWillWatch }
+                    addMovieToWillWatch={ this.addMovieToWillWatch }
+                  />
+                </div>
+                })
               }
-              {
-                (current_page < total_pages) && <button className="btn btn-info btn-xs ml-1" onClick={ this.nextPage }>Next</button>
-              }
-              <div className="current-info ml-3">{ current_page }/{ total_pages }</div>
+              </div>
+              <div className="row ml-0 mb-4 d-flex align-items-center">
+                {
+                  (current_page > 1) && <button className="btn btn-info btn-xs" onClick={ this.prevPage }>Prev</button>
+                }
+                {
+                  (current_page < total_pages) && <button className="btn btn-info btn-xs ml-1" onClick={ this.nextPage }>Next</button>
+                }
+                <div className="current-info ml-3">{ current_page }/{ total_pages }</div>
+              </div>
             </div>
           </div>
         </div>
