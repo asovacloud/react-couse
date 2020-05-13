@@ -158,7 +158,10 @@ class App extends Component {
                       <tr>
                         <th scope="col">#</th>
                         <th>Title</th>
-                        <th className="text-center"><span className="text-warning">&#9733;</span> Rating</th>
+                        <th
+                          className="text-center"
+                          style={{ whiteSpace: "nowrap" }}
+                        ><span className="text-warning">&#9733;</span> Rating</th>
                         <th scope="col" className="text-danger text-center">Eject</th>
                       </tr>
                     </thead>
@@ -238,6 +241,12 @@ class App extends Component {
                   </div>
                 </div>
               </div>
+            </div>
+          </Route>
+          <Route path="/">
+            <div className="container">
+              <h1 className="mb-4">Not found page</h1>
+              <p>That page wasn't found.</p>
             </div>
           </Route>
         </Switch>
