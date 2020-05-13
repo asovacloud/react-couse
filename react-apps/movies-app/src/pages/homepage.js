@@ -37,6 +37,7 @@ const Homepage = props => {
               className="ant-pagination"
               onChange={ paginationWillUpdate }
               defaultCurrent={ current_page }
+              current={ current_page }
               defaultPageSize={ 1 }
               pageSize={ 1 }
               total={ total_pages }
