@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 import MovieItem from '../MovieItem';
 import MovieTabs from '../MovieTabs';
 import Pagination from 'rc-pagination';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+} from 'react-router-dom';
+
 import "rc-pagination/assets/index.css";
-
-
 import { API_URL, API_KEY_3  } from '../../utils/api';
 
 class App extends Component {
@@ -12,7 +17,9 @@ class App extends Component {
     super();
     this.state = {
       movies: [],
-      moviesWillWatch: [],
+      moviesWillWatch: window.localStorage.getItem('moviesWillWatch')
+                    ? JSON.parse(window.localStorage.getItem('moviesWillWatch'))
+                    : [],
       sort_by: "revenue.desc",
       current_page: 1,
       total_pages: null,
@@ -40,7 +47,6 @@ class App extends Component {
           movies: data.results,
           total_pages: data.total_pages,
         });
-        console.log("App -> getMovies -> data.results", data)
       });
   }
 
@@ -52,17 +58,20 @@ class App extends Component {
   };
 
   deleteMovieFromWillWatch = movie => {
-    const newData = this.state.moviesWillWatch.filter(el => el.id !== movie.id);
+    const updateMovieToWillWatch = this.state.moviesWillWatch.filter(el => el.id !== movie.id);
     this.setState({
-      moviesWillWatch: newData,
+      moviesWillWatch: updateMovieToWillWatch,
     });
+    window.localStorage.setItem('moviesWillWatch', JSON.stringify(updateMovieToWillWatch));
   };
 
   addMovieToWillWatch = movie => {
+    console.log("App -> movie", movie)
     const updateMovieToWillWatch = [...this.state.moviesWillWatch, movie];
     this.setState({
       moviesWillWatch: updateMovieToWillWatch,
     });
+    window.localStorage.setItem('moviesWillWatch', JSON.stringify(updateMovieToWillWatch));
   };
 
   updateSortBy = value => {
@@ -92,27 +101,40 @@ class App extends Component {
   }
 
   render() {
-    const { movies, moviesWillWatch, sort_by, total_pages, current_page } = this.state;
+    const {
+      current_page,
+      movies,
+      moviesWillWatch,
+      sort_by,
+      total_pages,
+    } = this.state;
     return (
-      <div className="wrapper">
+      <Router className="wrapper">
         <div className="navbar navbar-dark bg-dark shadow-sm mb-5 navbar-expand-xl">
           <div className="container d-flex justify-content-between">
-            <a href="#" class="navbar-brand d-flex align-items-center">
+            <a href="#" className="navbar-brand d-flex align-items-center">
               <strong>Movies App</strong>
             </a>
-            <div class="navbar-nav-scroll nav-pills">
+            <nav className="navbar-nav-scroll_ nav-pills">
               <ul className="navbar-nav bd-navbar-nav flex-row">
                 <li className="nav-item">
-                  <a href="#" className="nav-link active">Hompage</a>
+                  <Link
+                    className="nav-link
+                    active" to='/'
+                  >Homepage</Link>
                 </li>
                 <li className="nav-item">
-                  <a href="#" className="nav-link">Wishlist</a>
+                  <Link
+                    to="/wishlist"
+                    className="nav-link"
+                  >Wishlist</Link>
                 </li>
               </ul>
-            </div>
+            </nav>
           </div>
         </div>
         <div className="container">
+          <h1 className="mb-4">Homepage</h1>
           <div className="row mb-4">
             <div className="col-12">
               <MovieTabs updateSortBy={ this.updateSortBy } sort_by={ sort_by } />
@@ -135,12 +157,17 @@ class App extends Component {
               </div>
               <div className="row">
               { movies.map(movie => {
+                  const movieWillWatchState = moviesWillWatch.findIndex(el => {
+                    return el.id === movie.id;
+                  });
+                  console.log("App -> render -> movieWillWatchState", movie.title ,': ', movieWillWatchState);
                   return <div key={ movie.id } className="col-md-6 mb-4">
                   <MovieItem
                     movie={ movie }
                     deleteHandle={ this.deleteHandle }
                     deleteMovieFromWillWatch={ this.deleteMovieFromWillWatch }
                     addMovieToWillWatch={ this.addMovieToWillWatch }
+                    movieWillWatchState={ movieWillWatchState !== -1 }
                   />
                 </div>
                 })
@@ -158,7 +185,47 @@ class App extends Component {
             </div>
           </div>
         </div>
-      </div>
+        <div className="container wishlist">
+            <h1 className="mb-4">Wishlist</h1>
+            <button className="btn btn-link mb-2">&#8592; Go home</button>
+            {
+              (moviesWillWatch.length === 0) && <p>There is nothing in the wishlist.</p>
+            }
+            {
+              (moviesWillWatch.length > 0) && 
+                <table className="table table-sm">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th>Title</th>
+                      <th className="text-center"><span className="text-warning">&#9733;</span> Rating</th>
+                      <th scope="col" className="text-danger text-center">Eject</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      moviesWillWatch.map((item, index) => {
+                        return (
+                          <tr key={ item.id }>
+                            <th scope="row">{ index + 1 }</th>
+                            <td><div className="wishlist__title">{ item.title }</div></td>
+                            <td className="text-center">{ item.vote_average }</td>
+                            <th scope="row" className="text-center">
+                              <button
+                                date-id="{ item.id }"
+                                className="btn btn-sm btn-danger"
+                                onClick={ () => this.deleteMovieFromWillWatch(item) }
+                              >&#x2717;</button>
+                            </th>
+                          </tr>
+                        );
+                      })
+                    }
+                  </tbody>
+                </table>
+            }
+        </div>
+      </Router>
     );
   }
 };
