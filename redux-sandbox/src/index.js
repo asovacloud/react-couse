@@ -6,7 +6,9 @@ const reducer = (state = initialState, action) => {
 
   switch (action.type) {
     case 'INC':
-      return state + 1;
+      return ++state;
+    case 'DEC':
+      return --state;
     default:
       return state;
   }
@@ -15,10 +17,13 @@ const reducer = (state = initialState, action) => {
 
 const store = createStore(reducer);
 store.subscribe(() => {
-  console.log('store: ', store.getState());
+  document.querySelector('#counter').textContent = store.getState();
 });
 
-store.dispatch({ type: 'INC' });
-store.dispatch({ type: 'INC' });
-store.dispatch({ type: 'INC' });
-store.dispatch({ type: 'INC' });
+document.querySelector('#inc').addEventListener('click', () => {
+  store.dispatch({ type: 'INC' });
+});
+
+document.querySelector('#dec').addEventListener('click', () => {
+  store.dispatch({ type: 'DEC' });
+});
