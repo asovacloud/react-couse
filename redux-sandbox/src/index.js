@@ -9,6 +9,8 @@ const reducer = (state = initialState, action) => {
       return ++state;
     case 'DEC':
       return --state;
+    case 'RND':
+      return state + action.payload
     default:
       return state;
   }
@@ -26,4 +28,13 @@ document.querySelector('#inc').addEventListener('click', () => {
 
 document.querySelector('#dec').addEventListener('click', () => {
   store.dispatch({ type: 'DEC' });
+});
+
+document.querySelector('#rnd').addEventListener('click', () => {
+  const payload = Math.floor(Math.random()*10);
+
+  store.dispatch({
+    type: 'RND',
+    payload
+  });
 });
