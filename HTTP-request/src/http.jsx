@@ -8,3 +8,22 @@ export const fetchAvailablePlaces = async () => {
 
   return places;
 };
+
+export const updateUserPlaces = async (places) => {
+  console.log('PLACES:: ', places);
+  const response = await fetch('http://localhost:3030/user-places', {
+    method: 'PUT',
+    body: JSON.stringify({ places }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error('Failed to update places.');
+  }
+
+  return data;
+};
