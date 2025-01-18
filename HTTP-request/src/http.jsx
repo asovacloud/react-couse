@@ -9,6 +9,17 @@ export const fetchAvailablePlaces = async () => {
   return places;
 };
 
+export const fetchUserPlaces = async () => {
+  const response = await fetch('http://localhost:3030/user-places');
+  const { places } = await response.json();
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch user places.');
+  }
+
+  return places;
+};
+
 export const updateUserPlaces = async (places) => {
   const response = await fetch('http://localhost:3030/user-places', {
     method: 'PUT',
