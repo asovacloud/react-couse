@@ -1,0 +1,11 @@
+.info-box {
+  padding-bottom: 14px;
+  margin-left: -7px;
+  margin-right: -7px;
+}
+
+.info-box__col1,
+.info-box__col2 {
+  padding-left: 7px;
+  padding-right: 7px;
+}
